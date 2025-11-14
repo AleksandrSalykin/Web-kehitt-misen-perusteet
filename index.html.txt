@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task H — Form with Table</title>
+
+  <!-- bTw -->
+  <script>
+    (function () {
+      const KEY = "site-theme";
+      const saved = localStorage.getItem(KEY);
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const enableDark = saved ? saved === "dark" : prefersDark;
+      document.documentElement.classList.toggle("dark", enableDark);
+    })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+</head>
+
+<body class="min-h-screen bg-gray-100 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors">
+
+  <!-- Header -->
+  <header class="py-4 bg-white dark:bg-gray-900 shadow">
+    <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">Task H Demo</h1>
+      <button id="themeToggle"
+        class="px-3 py-1.5 rounded bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 transition">
+         Toggle Theme
+      </button>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-4xl mx-auto mt-10 p-6 bg-white dark:bg-gray-900 shadow rounded-xl">
+    <h2 class="text-2xl font-bold mb-4">Submit Your Info</h2>
+
+    <!-- Form Success -->
+    <div id="formSuccess" class="hidden mb-4 p-3 bg-green-700 text-white rounded"></div>
+
+    <!-- Form -->
+    <form id="contactForm" novalidate class="space-y-4">
+      <input type="hidden" id="timestamp">
+
+      <!-- Full Name -->
+      <label class="block">
+        <span class="font-medium">Full Name</span>
+        <input type="text" id="fullName" data-error-target="errName" placeholder="John Doe"
+          class="mt-1 w-full p-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800" />
+        <p id="errName" class="hidden text-red-500 text-sm mt-1"></p>
+      </label>
+
+      <!-- Email -->
+      <label class="block">
+        <span class="font-medium">Email</span>
+        <input type="email" id="email" data-error-target="errEmail" placeholder="name@example.com"
+          class="mt-1 w-full p-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800" />
+        <p id="errEmail" class="hidden text-red-500 text-sm mt-1"></p>
+      </label>
+
+      <!-- Phone -->
+      <label class="block">
+        <span class="font-medium">Phone Number</span>
+        <input type="tel" id="phone" data-error-target="errPhone" placeholder="+358 401234567"
+          class="mt-1 w-full p-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800" />
+        <p id="errPhone" class="hidden text-red-500 text-sm mt-1"></p>
+      </label>
+
+      <!-- Birth Date -->
+      <label class="block">
+        <span class="font-medium">Birth Date</span>
+        <input type="date" id="birthDate" data-error-target="errBirth"
+          class="mt-1 w-full p-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800" />
+        <p id="errBirth" class="hidden text-red-500 text-sm mt-1"></p>
+      </label>
+
+      <!-- Terms -->
+      <label class="flex items-center space-x-2">
+        <input type="checkbox" id="terms" data-error-target="errTerms"
+          class="rounded border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800" />
+        <span>I accept the terms and conditions</span>
+      </label>
+      <p id="errTerms" class="hidden text-red-500 text-sm mt-1"></p>
+
+      <button type="submit"
+        class="px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+        Submit
+      </button>
+    </form>
+
+    <!-- Table -->
+    <div class="overflow-x-auto mt-8">
+      <table class="min-w-full table-auto border-collapse border border-gray-300 dark:border-gray-700">
+        <thead class="bg-gray-200 dark:bg-gray-800">
+          <tr>
+            <th class="border p-2">Timestamp</th>
+            <th class="border p-2">Name</th>
+            <th class="border p-2">Email</th>
+            <th class="border p-2">Phone</th>
+            <th class="border p-2">Birth Date</th>
+            <th class="border p-2">Terms</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-12 py-6 text-center opacity-70">
+    © 2025 Task H Example
+  </footer>
+
+  <!-- Dark Mode -->
+  <script>
+    document.getElementById("themeToggle").addEventListener("click", () => {
+      const KEY = "site-theme";
+      const html = document.documentElement;
+      const dark = html.classList.toggle("dark");
+      localStorage.setItem(KEY, dark ? "dark" : "light");
+    });
+  </script>
+
+  <script src="form.js"></script>
+
+</body>
+</html>
