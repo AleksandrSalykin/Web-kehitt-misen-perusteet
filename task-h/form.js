@@ -106,6 +106,13 @@
     successBox.textContent = "Submission successful!";
     successBox.classList.remove("hidden");
     setTimeout(() => successBox.classList.add("hidden"), 5000);
+    
+    flatpickr("#birthdate", {
+    dateFormat: "Y-m-d",
+    locale: "en",
+    maxDate: "today"
+});
+
   });
 
 })();
